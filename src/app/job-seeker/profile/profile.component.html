@@ -1,0 +1,39 @@
+<div class="flex flex-col mt-10">
+    <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+      <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+        <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+          <table class="min-w-full divide-y divide-gray-200">
+            <thead class="bg-gray-50">
+              <tr>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Id</th>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Titulli</th>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Përshkrimi</th>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Paga</th>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Detajet</th>
+              </tr>
+            </thead>
+            <tbody class="bg-white divide-y divide-gray-200">
+              <tr *ngFor="let job of jobsAvailable">
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{{job.id}}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{job.title}}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{job.description}}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{job.salary | currency:'LEK'}}</td>
+
+                <td class="px-6 py-4 whitespace-nowrap text-left text-sm font-medium">
+                    <button type="button" class="w-32  inline-flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-md bg-indigo-600 shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                       <span>
+                         <i class="fa-solid fa-pen-to-square text-white" (click)="onOpenModal(job.id)">Detaje</i>
+                        </span>
+                      </button>
+                </td>
+
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="openModal">
+    <app-job-details [jobId]="selectedJobId" (deactivateModal)="hideModal($event)" ></app-job-details>
+  </div>

@@ -1,0 +1,84 @@
+<div class="bg-white">
+  <section aria-labelledby="features-heading" class="relative">
+    <div
+      class="hidden md:block aspect-w-3 aspect-h-2 overflow-hidden  sm:aspect-w-5 mt-28 lg:absolute lg:w-1/2 lg:h-full lg:pr-4 xl:pr-16">
+      <img src="assets/images/lookingforworkers.jpg" alt="Job-Listing"
+        class=" object-center object-cover">
+    </div>
+
+    <div
+      class="max-w-2xl mx-auto pt-16  px-4 sm:pb-32 sm:px-6 lg:max-w-7xl lg:pt-32 lg:px-8 lg:grid lg:grid-cols-2 lg:gap-x-8">
+      <div class="lg:col-start-2">
+
+        <p class="mt-4 text-4xl font-extrabold text-gray-900 tracking-tight">Krijoni në punë te re.</p>
+        <p class="mt-4 text-gray-500">Plotesoni fushat e meposhtme me detajet e punes qe ju ofroni.</p>
+
+        <form class="mt-10 flex flex-col  gap-y-10 gap-x-8 text-sm sm:grid-cols-2" [formGroup]="jobForm">
+          <div>
+            <label for="title" class="block text-sm font-medium text-gray-900"> Titulli </label>
+              <div class="mt-1">
+                <input id="title" placeholder="Shkruani titullin e punes..." formControlName="title" name="title" type="text" required class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+              </div>
+              <span
+              class="text-red-500 text-sm mt-2"
+              *ngIf="jobForm.get('title')?.errors?.['maxlength']" class="text-xs text-red-500 ml-2
+              "
+            >
+              Titulli nuk mund të përmbajë më shumë se 50 karaktere!
+            </span>
+          </div>
+          <div>
+            <label for="description" class="block text-sm font-medium text-gray-900"> Pershkrimi </label>
+              <div class="mt-1">
+                <textarea formControlName="description" name="title" type="text" required class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                </textarea>
+              </div>
+              <span
+              class="text-red-500 text-sm mt-2"
+              *ngIf="jobForm.get('description')?.errors?.['maxlength']" class="text-xs text-red-500 ml-2
+              "
+            >
+              Përshkrimi nuk mund të përmbajë më shumë se 3000 karaktere!
+            </span>
+          </div>
+          <div>
+            <label for="salary" class="block text-sm font-medium text-gray-900"> Paga </label>
+              <div class="mt-1">
+                <input id="salary" placeholder="Shkruani titullin e punes..." formControlName="salary" name="salary" type="number" required class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+              </div>
+              <span
+              class="text-red-500 text-sm mt-2"
+              *ngIf="jobForm.get('salary')?.errors?.['max']" class="text-xs text-red-500 ml-2
+              "
+            >
+              Pagat më të larta se 1,000,000 Lekë,kanë nevojë për kontratë!
+            </span>
+          </div>
+          <button type="submit" (click)="postNewJob()" [class]="
+              (jobForm.valid ? '' : 'opacity-40 cursor-not-allowed ') +
+              'w-32  inline-flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'
+            ">
+            <div>
+              <span *ngIf="hidePostButton">
+                Posto
+              </span>
+              <span *ngIf="loadingValue">
+                <svg class="w-5 h-5 mr-3 -ml-1 text-white animate-spin" xmlns="http://www.w3.org/2000/svg" fill="none"
+                  viewBox="0 0 24 24">
+                  <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                  <path class="opacity-75" fill="currentColor"
+                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
+                  </path>
+                </svg>
+              </span>
+            </div>
+
+          </button>
+          <!-- <button type="button" (click)="postNewJob()" class="w-32  inline-flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+            <span>Posto</span>
+          </button> -->
+        </form>
+      </div>
+    </div>
+  </section>
+</div>
